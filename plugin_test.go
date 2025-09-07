@@ -100,7 +100,7 @@ func TestResponseHeaders_StrictMode(t *testing.T) {
 		rw.Header().Set("X-Existing-Response", "existing")
 		rw.Header().Set("X-Empty-Response", "") // Explicitly empty
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("response"))
+		_, _ = rw.Write([]byte("response"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -135,7 +135,7 @@ func TestResponseHeaders_LooseMode(t *testing.T) {
 		rw.Header().Set("X-Existing-Response", "existing")
 		rw.Header().Set("X-Empty-Response", "") // Should be overwritten in loose mode
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("response"))
+		_, _ = rw.Write([]byte("response"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -166,7 +166,7 @@ func TestNoResponseHeaders(t *testing.T) {
 	next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		assertHeader(t, req, "X-Request-Header", "request-value")
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("response"))
+		_, _ = rw.Write([]byte("response"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -222,7 +222,7 @@ func TestBypassHeaders_HeaderPresence(t *testing.T) {
 			t.Error("Request headers should not be modified when bypassed")
 		}
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("response"))
+		_, _ = rw.Write([]byte("response"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -260,7 +260,7 @@ func TestBypassHeaders_HeaderValue(t *testing.T) {
 			t.Error("Request headers should not be modified when bypassed")
 		}
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("response"))
+		_, _ = rw.Write([]byte("response"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -296,7 +296,7 @@ func TestBypassHeaders_NoBypass(t *testing.T) {
 		// Headers should be added in this case
 		assertHeader(t, req, "X-Test-Header", "test-value")
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("response"))
+		_, _ = rw.Write([]byte("response"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -400,7 +400,7 @@ func TestFlushingBehavior(t *testing.T) {
 	ctx := context.Background()
 	next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		rw.WriteHeader(http.StatusOK)
-		rw.Write([]byte("test"))
+		_, _ = rw.Write([]byte("test"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -430,7 +430,7 @@ func TestDefaultStatusCodeBehavior(t *testing.T) {
 	ctx := context.Background()
 	next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 		// Only call Write() without explicit WriteHeader() - should default to 200 OK
-		rw.Write([]byte("response without explicit status"))
+		_, _ = rw.Write([]byte("response without explicit status"))
 	})
 
 	handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
@@ -481,7 +481,7 @@ func TestExplicitStatusCodePreservation(t *testing.T) {
 			ctx := context.Background()
 			next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
 				rw.WriteHeader(tc.statusCode)
-				rw.Write([]byte("test response"))
+				_, _ = rw.Write([]byte("test response"))
 			})
 
 			handler, err := add_missing_headers.New(ctx, next, cfg, "test-plugin")
