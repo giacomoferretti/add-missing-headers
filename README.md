@@ -2,7 +2,7 @@
 
 A Traefik plugin that adds missing HTTP headers to requests and responses without overriding existing headers. Supports both strict and loose header checking modes, explicit flushing control, and conditional bypass functionality.
 
-**GitHub**: <https://github.com/giacomoferretti/add-missing-headers-traefik-plugin>
+**GitHub**: <https://github.com/giacomoferretti/add-missing-headers>
 
 ## Features
 
@@ -22,8 +22,8 @@ A Traefik plugin that adds missing HTTP headers to requests and responses withou
 experimental:
   plugins:
     add-missing-headers:
-      moduleName: github.com/giacomoferretti/add-missing-headers-traefik-plugin
-      version: v0.1.1
+      moduleName: github.com/giacomoferretti/add-missing-headers
+      version: v0.1.2
 ```
 
 #### TOML (traefik.toml)
@@ -31,15 +31,15 @@ experimental:
 ```toml
 [experimental.plugins]
   [experimental.plugins.add-missing-headers]
-    moduleName = "github.com/giacomoferretti/add-missing-headers-traefik-plugin"
-    version = "v0.1.1"
+    moduleName = "github.com/giacomoferretti/add-missing-headers"
+    version = "v0.1.2"
 ```
 
 #### CLI
 
 ```bash
---experimental.plugins.add-missing-headers.modulename=github.com/giacomoferretti/add-missing-headers-traefik-plugin \
---experimental.plugins.add-missing-headers.version=v0.1.1
+--experimental.plugins.add-missing-headers.modulename=github.com/giacomoferretti/add-missing-headers \
+--experimental.plugins.add-missing-headers.version=v0.1.2
 ```
 
 ### Dynamic Configuration Examples

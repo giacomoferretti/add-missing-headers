@@ -1,3 +1,3 @@
-module github.com/giacomoferretti/add-missing-headers-traefik-plugin
+module github.com/giacomoferretti/add-missing-headers
 
 go 1.19

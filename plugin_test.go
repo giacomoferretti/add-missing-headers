@@ -20,7 +20,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	add_missing_headers "github.com/giacomoferretti/add-missing-headers-traefik-plugin"
+	add_missing_headers "github.com/giacomoferretti/add-missing-headers"
 )
 
 func TestRequestHeaders_StrictMode(t *testing.T) {

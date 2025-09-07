@@ -1,7 +1,7 @@
 displayName: Add Missing Headers
 type: middleware
 
-import: github.com/giacomoferretti/add-missing-headers-traefik-plugin
+import: github.com/giacomoferretti/add-missing-headers
 
 summary: Add missing HTTP headers to requests and responses with configurable checking modes and bypass functionality
 
