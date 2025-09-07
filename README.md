@@ -23,7 +23,7 @@ experimental:
   plugins:
     add-missing-headers:
       moduleName: github.com/giacomoferretti/add-missing-headers-traefik-plugin
-      version: v0.1.0
+      version: v0.1.1
 ```
 
 #### TOML (traefik.toml)
@@ -32,14 +32,14 @@ experimental:
 [experimental.plugins]
   [experimental.plugins.add-missing-headers]
     moduleName = "github.com/giacomoferretti/add-missing-headers-traefik-plugin"
-    version = "v0.1.0"
+    version = "v0.1.1"
 ```
 
 #### CLI
 
 ```bash
 --experimental.plugins.add-missing-headers.modulename=github.com/giacomoferretti/add-missing-headers-traefik-plugin \
---experimental.plugins.add-missing-headers.version=v0.1.0
+--experimental.plugins.add-missing-headers.version=v0.1.1
 ```
 
 ### Dynamic Configuration Examples
