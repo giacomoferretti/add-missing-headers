@@ -1,0 +1,21 @@
+displayName: Add Missing Headers
+type: middleware
+
+import: github.com/giacomoferretti/add-missing-headers-traefik-plugin
+
+summary: Add missing HTTP headers to requests and responses with configurable checking modes and bypass functionality
+
+testData:
+  # Basic configuration
+  requestHeaders:
+    X-Custom-RequestHeader: "CustomRequestHeader"
+  responseHeaders:
+    X-Custom-ResponseHeader: "CustomResponseHeader"
+  # Enable strict header checking (default: true)
+  strictHeaderCheck: true
+  # Disable explicit flushing (default: false)
+  disableExplicitFlush: false
+  # Bypass headers for conditional middleware execution
+  bypassHeaders:
+    X-Bypass-Header: ""        # Bypass if present
+    X-Skip-Headers: "true"     # Bypass if value equals "true"
